@@ -1,0 +1,4 @@
+使用cron来检查nginx的缓存目录
+
+情景：
+nginx在执行的时候，client发的上传文件请求，在nginx做缓存时，有时候会莫名奇妙的会发生Permision denied的错误，导致前端无响应，这时只要将client_body_temp文件的owner修改就可以了，目前还未找到发生这种现象的原因

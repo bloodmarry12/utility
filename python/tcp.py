@@ -11,7 +11,7 @@ import sys
 
 NORMAL=0
 ERROR=1
-TIMEOUT=5
+TIMEOUT=5.0#settimeout(None|float)
 
 def ping(ip,port,timeout=TIMEOUT):
 	try:
