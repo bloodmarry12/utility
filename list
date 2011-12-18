@@ -3,3 +3,7 @@ python
 bin
 	- deploy
 		- for deploy and execute crontab
+env
+	- bashrc
+		- for set script env,to use it sample
+ 
