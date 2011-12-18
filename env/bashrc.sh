@@ -13,7 +13,6 @@ touchsh(){
 	then
     	touch $1
 		chmod 755 $1
-    	#title="#!/bin/bash -x \n#autuor `whoami` \n#date:`date +"%Y-%m-%d %T"` \n"
     	title="#!/bin/bash -x \n#filename:$1\n#autuor:\tgavingeng\n#date:\t\t`date +"%Y-%m-%d %T"`\n"
     	echo -e $title >>$1
 	fi
