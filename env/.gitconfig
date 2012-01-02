@@ -1,0 +1,42 @@
+[user]
+	#name = $USER 
+	#设置用户的邮箱
+	#email = $EMAIL
+[github]
+	#user = $USER
+	token = 8cbd78b130c3e52763dc6bfb6f8a7437
+[core]
+        editor = vim
+	    filemode = false
+        quotepath = false
+
+[alias]
+	    ci = commit -a
+	    st = status 
+        co = checkout
+
+[log]
+	    date = local
+
+[color]
+        status = auto
+        branch = auto
+        diff = auto
+        ui = true
+        pager = true
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
