@@ -3,11 +3,21 @@
 #autuor:	gavingeng
 #date:		2011-12-18 12:14:31
 
+#history相关设置
+#让系统记录每条历史命令的执行时间
+export HISTTIMEFORMAT='%F %T '
+#忽略历史中的特定命令
+export HISTIGNORE="pwd:ll:ls:ll -ltr:"
+#控制历史命令记录的总行数
+export HISTSIZE=100000
+
+#创建目录，并进入该目录
 mkcd(){
     mkdir $1
     cd $1
 }
 
+#创建.sh的时候，加入固定的信息，目前有：使用的shell信息、文件名、作者、创建日期
 touchsh(){
 	if test ! -e $1
 	then
@@ -20,6 +30,7 @@ touchsh(){
 	vi $1
 }
 
+#创建.py文件时，写入固定信息
 touchpy(){
 	if test ! -e $1
 	then
