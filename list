@@ -6,4 +6,7 @@ bin
 env
 	- bashrc
 		- for set script env,to use it sample
- 
+	- .vimrc
+		- ubuntu vim configration 
+	- .gitconfig
+		- use git manage project,always setting configration
