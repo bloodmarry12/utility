@@ -55,3 +55,6 @@ touchpy(){
 	vi $1
 }
 
+#自动补齐
+#link:http://blog.longwin.com.tw/2012/02/bash-autocomplete-ssh-2012/
+complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh
