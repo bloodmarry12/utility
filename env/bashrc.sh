@@ -57,4 +57,27 @@ touchpy(){
 
 #自动补齐
 #link:http://blog.longwin.com.tw/2012/02/bash-autocomplete-ssh-2012/
-complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh
+complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh 
+
+rmpyc(){
+    #默认是删除5层结构内的pyc文件
+    level=3
+    #echo $((RANDOM%10+1)) 10以内的随机数
+    if test -n $1;then
+        #采用此方式来处理所传参数是否为数字，并将expr值重定向到/dev/null中
+        expr $1 - $level >/dev/null 2>&1
+        #使用$?来判断上步是否出错，这样来设置level
+        if test $? -eq 0;then 
+            level=$1
+        fi  
+
+    #   echo $level
+        #可做交互式的删除操作
+        for f in `find . -maxdepth $level -name "*.pyc"`;
+        do  
+            echo $f
+            rm -rf $f
+        done
+    fi  
+}
+
