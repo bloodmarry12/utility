@@ -1,0 +1,6 @@
+利用awk等shell脚本来获取到的语言种类
+1. cat google-translate.src | awk -F"<option value=" '{print $2}' | grep -v "^$" | awk -F"<" '{print $1}' >lanaguage.txt
+2. vi lanaguage.txt   :%s/>/=/g
+
+很多语言，都木有接触过的！ translate脚本已加入到.bashrc中
+for l in `awk -F"=" '{print $2}' lanaguage.txt` ;do echo $l; translate $l;done
