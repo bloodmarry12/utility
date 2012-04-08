@@ -81,3 +81,61 @@ rmpyc(){
     fi  
 }
 
+SimpleHTTPServer(){
+    port=8000
+    if test -n $1;then
+        expr $1 - $port >/dev/null 2>&1
+        if test $? -eq 0 ;then
+            port=$1
+        fi  
+    fi  
+    echo $port
+    echo 'usage: python -m SimpleHTTPServer $port'
+    #python -m SimpleHTTPServer $port >>/tmp/simpleHTTPServer.log 2>&1
+    python -m SimpleHTTPServer $port 
+}
+
+receiveFileServere(){
+    port=8000
+    if test -n $1;then
+        expr $1 - $port >/dev/null 2>&1
+        if test $? -eq 0 ;then
+            port=$1
+        fi
+    fi
+    echo $port
+    echo 'python ~/bin/droocp.py $port -d ~/uploads -p ~/Pictures/iphone_cmd.png -m"please send your file to me!"'
+    #python ~/bin/droocp.py $port -d ~/uploads -p ~/Pictures/iphone_cmd.png -m"please send your file to me!"
+    python ~/bin/droocp.py -d ~/uploads -p ~/Pictures/iphone_cmd.png -m"please send your file to me!"
+}
+
+#translate
+#use youdao translate
+ts_youdao(){
+words=""
+for word in $@; 
+do
+    words="$words$word "
+done
+echo $words
+curl -s \
+        "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
+     -d \
+    "type=AUTO&i=$words&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
+        | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p' ;
+
+return 0;
+}
+
+#use google translate
+translate(){
+words=""
+for word in $@; 
+do
+    words="$words$word "
+done
+#echo $words
+curl -e "http://translate.google.cn/?hl=en" -H 'User-Agent':'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:11.0) Gecko/20100101 Firefox/11.0','Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -d "tsel=0&ssel=0&tl=zh_CN&client=t&hl=en&sl=en&sc=1&text=$words&multires=1&otf=2" -s "http://translate.google.cn/translate_a/t" | awk -F"," '{printf "%s\n%s\n%s\n", $2,$3,$1}' | awk -F"\"" '{print $2}'
+    
+    #return 0;
+}
